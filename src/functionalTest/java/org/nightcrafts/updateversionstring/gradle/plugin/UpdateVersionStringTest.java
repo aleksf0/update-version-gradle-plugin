@@ -2,6 +2,8 @@ package org.nightcrafts.updateversionstring.gradle.plugin;
 
 import org.gradle.testkit.runner.BuildResult;
 import org.gradle.testkit.runner.GradleRunner;
+import org.gradle.testkit.runner.TaskOutcome;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -42,7 +44,7 @@ public class UpdateVersionStringTest {
 
         printTestProjectDirectoryFiles();
 
-//        Assertions.assertEquals(FAILED, result.task(":sortFiles").getOutcome());
+        Assertions.assertEquals(TaskOutcome.SUCCESS, result.task(":" + UpdateVersionStringPlugin.NAME).getOutcome());
 //        Assertions.assertTrue(
 //                result.getOutput().contains("Invalid property sortType value provided [wrong]. Valid values are ['extension','date','alphabet']"));
     }

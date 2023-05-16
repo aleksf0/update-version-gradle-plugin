@@ -13,7 +13,7 @@ testing {
             useJUnitJupiter()
         }
 
-        val integrationTest by registering(JvmTestSuite::class) {
+        val functionalTest by registering(JvmTestSuite::class) {
             dependencies {
                 implementation(project())
             }
@@ -29,7 +29,7 @@ testing {
 }
 
 tasks.named("check") {
-    dependsOn(testing.suites.named("integrationTest"))
+    dependsOn(testing.suites.named("functionalTest"))
 }
 
 dependencies {
@@ -38,7 +38,7 @@ dependencies {
 }
 
 gradlePlugin {
-    testSourceSets(sourceSets["integrationTest"])
+    testSourceSets(sourceSets["functionalTest"])
     plugins {
         create("updateVersionStringPlugin") {
             id = "org.nightcrafts.update-version-string-gradle-plugin"
