@@ -1,4 +1,4 @@
-package org.nightcrafts.gradle.plugin.extension;
+package org.nightcrafts.updateversion.gradle.plugin.extension;
 
 import org.gradle.api.Action;
 import org.gradle.api.file.RegularFileProperty;
@@ -7,9 +7,9 @@ import org.gradle.api.provider.Property;
 import org.gradle.api.tasks.Nested;
 import org.gradle.api.tasks.Optional;
 
-public interface VersionBumpExtension {
+public interface UpdateVersionExtension {
 
-    String NAME = "versionBump";
+    String NAME = "updateVersion";
 
     RegularFileProperty getCurrentVersionFile();
     @Optional

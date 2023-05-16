@@ -1,4 +1,4 @@
-package org.nightcrafts.gradle.plugin.extension;
+package org.nightcrafts.updateversion.gradle.plugin.extension;
 
 import org.gradle.api.provider.Property;
 import org.gradle.api.tasks.Optional;

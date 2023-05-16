@@ -1,4 +1,4 @@
-package org.nightcrafts.gradle.plugin.task;
+package org.nightcrafts.updateversion.gradle.plugin.task;
 
 import org.gradle.api.DefaultTask;
 import org.gradle.api.file.RegularFileProperty;
@@ -6,8 +6,8 @@ import org.gradle.api.provider.MapProperty;
 import org.gradle.api.provider.Property;
 import org.gradle.api.tasks.Optional;
 import org.gradle.api.tasks.*;
-import org.nightcrafts.gradle.plugin.model.Version;
-import org.nightcrafts.gradle.plugin.util.FreemarkerUtil;
+import org.nightcrafts.updateversion.gradle.plugin.model.Version;
+import org.nightcrafts.updateversion.gradle.plugin.util.FreemarkerUtil;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public abstract class VersionBumpTask extends DefaultTask {
+public abstract class UpdateVersionTask extends DefaultTask {
 
     public static final String DEFAULT_VERSION_LINE_REGEX = "(?m)^version\\s*=\\s*\"(?<version>.*)\"$";
 
@@ -53,9 +53,9 @@ public abstract class VersionBumpTask extends DefaultTask {
     @OutputFile
     public abstract RegularFileProperty getUpdatedVersionFile();
 
-    public VersionBumpTask() {
+    public UpdateVersionTask() {
         setGroup("version");
-        setDescription("Parses the version property in a file and bumps it");
+        setDescription("Parses the version property in a file and updates it");
     }
 
     @TaskAction
@@ -70,12 +70,13 @@ public abstract class VersionBumpTask extends DefaultTask {
 
         updateFile(getCurrentVersionFile(), getUpdatedVersionFile(), newVersion);
 
-        // TODO: Write thorough Unit Tests
-        // TODO: Fix integration test assert, possibly rearrange outputing/returning in helper
-        // TODO: Create descriptive README
         // TODO: Move source to dedicated repository on GitHub
         // TODO: Find a way to host in Gradle Plugin Portal
         // TODO: Rename classes and task name from 'bump' to 'updateVersion'
+
+        // TODO: Write thorough Unit Tests
+        // TODO: Fix integration test assert, possibly rearrange outputing/returning in helper
+        // TODO: Create descriptive README
         // TODO: Configure 2 tasks - 'release' and 'bump'. Do it in this plugin, or up to consumer via convention plugin?
     }
 

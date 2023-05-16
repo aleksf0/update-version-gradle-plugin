@@ -1,4 +1,4 @@
-package org.nightcrafts.gradle.plugin.model;
+package org.nightcrafts.updateversion.gradle.plugin.model;
 
 import lombok.*;
 

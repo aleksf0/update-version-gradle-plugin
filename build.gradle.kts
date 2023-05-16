@@ -49,9 +49,9 @@ dependencies {
 gradlePlugin {
     testSourceSets(sourceSets["integrationTest"])
     plugins {
-        create("versionBumpPlugin") {
-            id = "org.nightcrafts.version-bump-plugin"
-            implementationClass = "org.nightcrafts.gradle.plugin.VersionBumpPlugin"
+        create("updateVersionPlugin") {
+            id = "org.nightcrafts.update-version-gradle-plugin"
+            implementationClass = "org.nightcrafts.updateversion.gradle.plugin.UpdateVersionPlugin"
         }
     }
 }

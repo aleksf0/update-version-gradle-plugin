@@ -1,4 +1,4 @@
-package org.nightcrafts.gradle.plugin;
+package org.nightcrafts.updateversion.gradle.plugin;
 
 import java.io.BufferedWriter;
 import java.io.File;

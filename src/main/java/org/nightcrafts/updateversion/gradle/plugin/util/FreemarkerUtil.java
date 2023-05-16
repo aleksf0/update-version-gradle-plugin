@@ -1,4 +1,4 @@
-package org.nightcrafts.gradle.plugin.util;
+package org.nightcrafts.updateversion.gradle.plugin.util;
 
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapperBuilder;

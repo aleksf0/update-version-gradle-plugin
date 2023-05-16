@@ -1,19 +1,15 @@
-package org.nightcrafts.gradle.plugin;
+package org.nightcrafts.updateversion.gradle.plugin;
 
 import org.gradle.testkit.runner.BuildResult;
 import org.gradle.testkit.runner.GradleRunner;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-import org.nightcrafts.gradle.plugin.task.VersionBumpTask;
 
 import java.io.File;
 import java.io.IOException;
 
-import static org.gradle.testkit.runner.TaskOutcome.FAILED;
-
-public class VersionBumpTest {
+public class UpdateVersionTest {
 
     private static final String VERSION_FILE_PATH = "src/main/kotlin/org.nightcrafts.java-conventions.gradle.kts";
 
@@ -36,7 +32,7 @@ public class VersionBumpTest {
 
         BuildResult result = GradleRunner.create()
                 .withProjectDir(testProjectDir)
-                .withArguments(VersionBumpPlugin.NAME, "--stacktrace", "-PadditionalVersionParts=buildId=3we4fdF,pipelineId=98kSo2", "-PoverrideVersionX=9.9.9-coocoo-SNAPSHOT", "-PincrementMode=minor", "-PisSnapshot=false", "-PcurrentVersionFile=" + VERSION_FILE_PATH)
+                .withArguments(UpdateVersionPlugin.NAME, "--stacktrace", "-PadditionalVersionParts=buildId=3we4fdF,pipelineId=98kSo2", "-PoverrideVersionX=9.9.9-coocoo-SNAPSHOT", "-PincrementMode=minor", "-PisSnapshot=false", "-PcurrentVersionFile=" + VERSION_FILE_PATH)
                 .withPluginClasspath()
                 .build();
 
@@ -68,17 +64,17 @@ public class VersionBumpTest {
 
     private void createSettingsFile() throws IOException {
         testHelper.createNewFileWithContent("settings.gradle.kts", """
-                rootProject.name = "versionBumpPlugin"
+                rootProject.name = "updateVersionPlugin"
                 """);
     }
 
     private void createBuildFile() throws IOException {
         testHelper.createNewFileWithContent("build.gradle.kts", """
                 plugins {
-                    id("org.nightcrafts.version-bump-plugin")
+                    id("org.nightcrafts.update-version-gradle-plugin")
                 }
                 
-                versionBump {
+                updateVersion {
                     currentVersionFile.set(File("%s"))
                     isSnapshot.set(true)
                     incrementMode.set("patch")
