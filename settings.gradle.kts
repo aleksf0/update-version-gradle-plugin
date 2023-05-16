@@ -4,4 +4,4 @@ dependencyResolutionManagement {
 //    includeBuild("../../gradle/platform")
 }
 
-rootProject.name = "update-version-gradle-plugin"
+rootProject.name = "update-version-string-gradle-plugin"

@@ -1,4 +1,4 @@
-package org.nightcrafts.updateversion.gradle.plugin.extension;
+package org.nightcrafts.updateversionstring.gradle.plugin.extension;
 
 import org.gradle.api.Action;
 import org.gradle.api.file.RegularFileProperty;
@@ -7,9 +7,9 @@ import org.gradle.api.provider.Property;
 import org.gradle.api.tasks.Nested;
 import org.gradle.api.tasks.Optional;
 
-public interface UpdateVersionExtension {
+public interface UpdateVersionStringExtension {
 
-    String NAME = "updateVersion";
+    String NAME = "updateVersionString";
 
     RegularFileProperty getCurrentVersionFile();
     @Optional

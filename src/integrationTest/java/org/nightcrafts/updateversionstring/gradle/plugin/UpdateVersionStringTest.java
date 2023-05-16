@@ -1,4 +1,4 @@
-package org.nightcrafts.updateversion.gradle.plugin;
+package org.nightcrafts.updateversionstring.gradle.plugin;
 
 import org.gradle.testkit.runner.BuildResult;
 import org.gradle.testkit.runner.GradleRunner;
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.io.TempDir;
 import java.io.File;
 import java.io.IOException;
 
-public class UpdateVersionTest {
+public class UpdateVersionStringTest {
 
     private static final String VERSION_FILE_PATH = "src/main/kotlin/org.nightcrafts.java-conventions.gradle.kts";
 
@@ -32,7 +32,7 @@ public class UpdateVersionTest {
 
         BuildResult result = GradleRunner.create()
                 .withProjectDir(testProjectDir)
-                .withArguments(UpdateVersionPlugin.NAME, "--stacktrace", "-PadditionalVersionParts=buildId=3we4fdF,pipelineId=98kSo2", "-PoverrideVersionX=9.9.9-coocoo-SNAPSHOT", "-PincrementMode=minor", "-PisSnapshot=false", "-PcurrentVersionFile=" + VERSION_FILE_PATH)
+                .withArguments(UpdateVersionStringPlugin.NAME, "--stacktrace", "-PadditionalVersionParts=buildId=3we4fdF,pipelineId=98kSo2", "-PoverrideVersionX=9.9.9-coocoo-SNAPSHOT", "-PincrementMode=minor", "-PisSnapshot=false", "-PcurrentVersionFile=" + VERSION_FILE_PATH)
                 .withPluginClasspath()
                 .build();
 
@@ -52,11 +52,11 @@ public class UpdateVersionTest {
         System.out.println();
         System.out.println("Absolute path:");
         System.out.println(testProjectDir.getAbsolutePath());
-        System.out.println("");
+        System.out.println();
 
         System.out.println("Root:");
         testHelper.printAllFilesIn("");
-        System.out.println("");
+        System.out.println();
 
         System.out.println(String.format("Version file contents (%s):", VERSION_FILE_PATH));
         testHelper.printFileContents(VERSION_FILE_PATH);
@@ -64,17 +64,17 @@ public class UpdateVersionTest {
 
     private void createSettingsFile() throws IOException {
         testHelper.createNewFileWithContent("settings.gradle.kts", """
-                rootProject.name = "updateVersionPlugin"
+                rootProject.name = "updateVersionStringPlugin"
                 """);
     }
 
     private void createBuildFile() throws IOException {
         testHelper.createNewFileWithContent("build.gradle.kts", """
                 plugins {
-                    id("org.nightcrafts.update-version-gradle-plugin")
+                    id("org.nightcrafts.update-version-string-gradle-plugin")
                 }
                 
-                updateVersion {
+                updateVersionString {
                     currentVersionFile.set(File("%s"))
                     isSnapshot.set(true)
                     incrementMode.set("patch")

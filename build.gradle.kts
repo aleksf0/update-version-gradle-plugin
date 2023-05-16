@@ -6,15 +6,9 @@ plugins {
 group = "org.nightcrafts"
 version = "0.0.1-SNAPSHOT"
 
-//sourceSets {
-//    create("integrationTest") {
-//        compileClasspath += sourceSets.main.get().output
-//        runtimeClasspath += sourceSets.main.get().output
-//    }
-//}
-
 testing {
     suites {
+
         val test by getting(JvmTestSuite::class) {
             useJUnitJupiter()
         }
@@ -23,7 +17,6 @@ testing {
             dependencies {
                 implementation(project())
             }
-
             targets {
                 all {
                     testTask.configure {
@@ -35,11 +28,9 @@ testing {
     }
 }
 
-val integrationTestImplementation by configurations.getting {
-    extendsFrom(configurations.implementation.get())
+tasks.named("check") {
+    dependsOn(testing.suites.named("integrationTest"))
 }
-
-configurations["integrationTestRuntimeOnly"].extendsFrom(configurations.runtimeOnly.get())
 
 dependencies {
     implementation(gradleTestKit())
@@ -49,13 +40,9 @@ dependencies {
 gradlePlugin {
     testSourceSets(sourceSets["integrationTest"])
     plugins {
-        create("updateVersionPlugin") {
-            id = "org.nightcrafts.update-version-gradle-plugin"
-            implementationClass = "org.nightcrafts.updateversion.gradle.plugin.UpdateVersionPlugin"
+        create("updateVersionStringPlugin") {
+            id = "org.nightcrafts.update-version-string-gradle-plugin"
+            implementationClass = "org.nightcrafts.updateversionstring.gradle.plugin.UpdateVersionStringPlugin"
         }
     }
-}
-
-tasks.named("check") {
-    dependsOn(testing.suites.named("integrationTest"))
 }
